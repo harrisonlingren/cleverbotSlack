@@ -12,8 +12,8 @@ class cb:
         except KeyError:
             self.bot[memberid] = Cleverbot()
         else:
-            return self
+            return self.bot[memberid]
 
-    def respond(self, message, memberid):
-        response = self.bot[memberid].ask(message)
-        return response
+            # def respond(self, message, memberid):
+            #    response = self.bot[memberid].ask(message)
+            #    return response
