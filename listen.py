@@ -29,7 +29,7 @@ def slackbot():
     with open('./log.txt', 'wb') as f:
         f.write(bytes(strDump, 'UTF-8'))
     # print(msgText)
-    print(strDump)
+    print("\n" + strDump)
 
     cbInstance = cleverbot.getBot(msgSender)
     msgResponse = cbInstance.respond(msgText, msgSender)
