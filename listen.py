@@ -20,9 +20,9 @@ def slackbot():
     else:
         print("Could not read text")
         msgText = "Could not read text"
-
         print("Could not get member id")
         msgSender = "blank"
+        return msgText
 
     strDump = json.dumps(request.json)
 
