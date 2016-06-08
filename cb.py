@@ -7,7 +7,7 @@ class cb:
 
     def getCb(self, memberid):
         if self.cb[memberid] is not None:
-            return cb[memberid]
+            return self.cb[memberid]
         else:
             self.cb[memberid] = Cleverbot()
             return self.cb[memberid]
