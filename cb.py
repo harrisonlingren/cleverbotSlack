@@ -12,6 +12,6 @@ class cb:
             self.cb[memberid] = Cleverbot()
             return self
 
-    def respond(self, message, memberid):
-        response = self.cb[memberid].ask(message)
+    def respond(self, message):
+        response = self.cb[self.memberid].ask(message)
         return response
