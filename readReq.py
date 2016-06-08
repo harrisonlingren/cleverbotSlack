@@ -1,6 +1,6 @@
 from bottle import Bottle, get, post, request, route, run, template
 import json
-from MemeBot import MemeBot
+from cb import toCleverbot
 
 app = Bottle()
 
@@ -8,16 +8,17 @@ app = Bottle()
 def hello():
 	return "Test request received!"
 
-@app.route('/groupyBot', method='POST')
-def groupyBot():
+@app.route('/cbSlack', method='POST')
+def cbSlack():
 	jsonResp = request.json
-	msgText = str(jsonResp['text'])
+	# msgText = str(jsonResp['text'])
 	strDump = json.dumps(jsonResp)
-	
+	print(strDump)
+
 	with open('./log.txt', 'wb') as f:
 		f.write(bytes(strDump,'UTF-8'))
 	# print(msgText)
-	return MemeBot(msgText)
+	# return toCleverbot(msgText)
 
-run(app, host='192.168.1.115', port=8080, debug=True)
+run(app, host='10.0.0.100', port=8080, debug=True)
 
