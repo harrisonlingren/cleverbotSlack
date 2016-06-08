@@ -1,7 +1,7 @@
 import json
 from bottle import Bottle, request, run
 
-import cb
+from cb import cb
 
 app = Bottle()
 cleverbot = cb()
