@@ -2,8 +2,8 @@ from cleverbot import Cleverbot
 
 
 class cb:
-    def __init__(self, memberid, cb):
-        bot = {}
+    def __init__(self):
+        self.bot = {}
 
     def getBot(self, memberid):
         if self.bot[memberid] is not None:
