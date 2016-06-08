@@ -14,15 +14,13 @@ def hello():
 
 @app.route('/slackbot', method='POST')
 def slackbot():
-    if request.json['text'] is not None:
+    if request.json is not None:
         msgText = str(request.json['text'])
+        msgSender = str(request.json['member'])  # fix this to include correct params for member
     else:
         print("Could not read text")
         msgText = "Could not read text"
 
-    if request.json['text'] is not None:
-        msgSender = str(request.json['member'])  # fix this to include correct params for member
-    else:
         print("Could not get member id")
         msgText = "Could not get member id"
 
