@@ -10,7 +10,7 @@ class cb:
             return cb[memberid]
         else:
             self.cb[memberid] = Cleverbot()
-            return cb[memberid]
+            return self.cb[memberid]
 
     def respond(self, message, memberid):
         response = self.cb[memberid].ask(message)
