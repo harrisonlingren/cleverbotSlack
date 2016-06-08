@@ -22,7 +22,7 @@ def slackbot():
         msgText = "Could not read text"
 
         print("Could not get member id")
-        msgText = "Could not get member id"
+        msgSender = "Could not get member id"
 
     strDump = json.dumps(request.json)
 
