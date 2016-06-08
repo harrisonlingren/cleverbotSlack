@@ -3,9 +3,7 @@ from cleverbot import Cleverbot
 
 class cb:
     cb = {}
-
-    def __init__(self):
-        self.cb['blank'] = Cleverbot()
+    cb['blank'] = Cleverbot()
 
     def getCb(self, memberid):
         if cb[memberid] is not None:
