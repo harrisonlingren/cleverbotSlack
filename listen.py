@@ -35,7 +35,7 @@ def slackbot():
     msgResponse = cleverbot.getResponse(msgSender, msgText)
     # msgResponse2 = cbInstance.ask(msgText)
 
-    print(msgResponse, msgResponse2)
+    print(msgResponse)
     return msgResponse
 
 
