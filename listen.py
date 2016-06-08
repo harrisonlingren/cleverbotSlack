@@ -32,9 +32,10 @@ def slackbot():
     print("\n" + strDump)
 
     cbInstance = cleverbot.getBot(msgSender)
-    msgResponse = cbInstance.ask(msgText)
+    msgResponse = cleverbot.getBot(msgSender).ask(msgText)
+    msgResponse2 = cbInstance.ask(msgText)
 
-    print(msgResponse)
+    print(msgResponse, msgResponse2)
     return msgResponse
 
 
