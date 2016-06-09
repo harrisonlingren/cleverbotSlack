@@ -1,15 +1,16 @@
 from slacksocket import SlackSocket
 
+import json
 import slacktools
 
 token = slacktools.getSlackToken()
 sc = SlackSocket(token, translate=True)
 
 for event in sc.events():
-    resp = event.json
-    if ((resp['type']) == "message"):
-        if ((resp['channel']) == "harrison-testing"):
-            msg = (resp['text'])
+    data = json.load(event.json)
+    if ((data['type']) == "message"):
+        if ((data['channel']) == "harrison-testing"):
+            msg = (data['text'])
             # response with msg goes here
             print("Message found:  " + msg)
 
