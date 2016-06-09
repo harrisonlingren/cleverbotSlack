@@ -33,5 +33,7 @@ for event in sc.events():
 
             else:
                 print("Message is not on the right channel")
+        else:
+            print("Cleverbot not called in msg: " + msg)
 
     time.sleep(1)
