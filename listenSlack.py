@@ -2,6 +2,7 @@ import json
 from slacksocket import SlackSocket
 
 import slacktools
+from cb import cb
 
 token = slacktools.getSlackToken()
 sc = SlackSocket(token, translate=True)
@@ -14,7 +15,7 @@ for event in sc.events():
 
             msg = (data['text'])
             rsp = cleverbot.getResponse(msgSender, msgText)
-            
+
             finalString = "Message: " + msg + "\nResponse: " + rsp + "\n"
             with open('./log.txt', 'wb') as f:
                 f.write(bytes(finalString, 'UTF-8'))
