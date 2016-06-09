@@ -5,7 +5,7 @@ sc = SlackClient(token)
 
 if sc.rtm_connect():
     while True:
-        print sc.rtm_read()
+        print(sc.rtm_read())
         time.sleep(1)
 else:
     print("Connection failed, invalid token?")
