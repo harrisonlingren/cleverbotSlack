@@ -18,7 +18,7 @@ for event in sc.events():
         if "@cleverbot" in msg:
             if ((data['channel']) == "harrison-testing"):
 
-                msg = msg.replace('@cleverbot', '')
+                msg = msg.replace('!cleverbot', '')
                 user = (data['user'])
                 rsp = str(cleverbot.getResponse(user, msg))
                 dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
