@@ -16,7 +16,7 @@ for event in sc.events():
 
         msg = (data['text'])
         if "<@U1ES5EE1J>" in msg:
-            if ((data['channel']) == "harrison-testing"):
+            if ((data['channel']) == "xternsimulator"):
 
                 msg = msg.replace('<@U1ES5EE1J>', '')
                 msg.replace('@cleverbot:', '')
@@ -29,7 +29,7 @@ for event in sc.events():
                 with open('./log.txt', 'a') as f:
                     f.write(finalString)
 
-                ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
+                ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
 
                 print(finalString + "\nSent?: " + str(ifSent.sent))
 
