@@ -7,7 +7,7 @@ token = slacktools.getSlackToken()
 sc = SlackSocket(token, translate=True)
 
 for event in sc.events():
-    data = json.loads(event.json.read())
+    data = json.loads(event.json)
     if ((data['type']) == "message"):
         if ((data['channel']) == "harrison-testing"):
             msg = (data['text'])
