@@ -1,4 +1,5 @@
 import json
+import time
 from datetime import datetime
 from slacksocket import SlackSocket
 
@@ -29,3 +30,5 @@ for event in sc.events():
 
         else:
             print("Message is not on the right channel")
+
+    time.sleep(1)
