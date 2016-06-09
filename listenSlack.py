@@ -19,8 +19,8 @@ for event in sc.events():
             rsp = str(cleverbot.getResponse(user, msg))
             dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            finalString = "Message: " + msg + "\nUser: " + user + "\nResponse: " + rsp + "\n"
-            with open('./log.txt', 'wb') as f:
+            finalString = "Time: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\n"
+            with open('./log.txt', 'a') as f:
                 f.write(bytes(finalString, 'UTF-8'))
 
             print(finalString)
