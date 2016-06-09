@@ -23,7 +23,9 @@ for event in sc.events():
             with open('./log.txt', 'a') as f:
                 f.write(finalString)
 
-            print(finalString)
+            ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
+
+            print(finalString + "\nSent?: " + ifSent)
 
         else:
             print("Message is not on the right channel")
