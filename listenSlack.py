@@ -25,7 +25,7 @@ for event in sc.events():
 
             ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
 
-            print(finalString + "\nSent?: " + ifSent.sent)
+            print(finalString + "\nSent?: " + str(ifSent.sent))
 
         else:
             print("Message is not on the right channel")
