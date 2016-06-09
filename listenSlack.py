@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from slacksocket import SlackSocket
 
 import slacktools
@@ -14,9 +15,11 @@ for event in sc.events():
         if ((data['channel']) == "harrison-testing"):
 
             msg = (data['text'])
-            rsp = cleverbot.getResponse(msgSender, msgText)
+            user = (data['user'])
+            rsp = cleverbot.getResponse(user, msg)
+            dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            finalString = "Message: " + msg + "\nResponse: " + rsp + "\n"
+            finalString = "Message: " + msg + "\nUser: " + user + "\nResponse: " + rsp + "\n"
             with open('./log.txt', 'wb') as f:
                 f.write(bytes(finalString, 'UTF-8'))
 
