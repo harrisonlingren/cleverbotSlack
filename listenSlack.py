@@ -1,7 +1,8 @@
 import time
 from slackclient import SlackClient
+import slacktools
 
-token = "xoxp-37319837201-42485232481-49540458243-b109bbb8c6"
+token = slacktools.getSlackToken()
 sc = SlackClient(token)
 
 if sc.rtm_connect():
