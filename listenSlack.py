@@ -13,22 +13,25 @@ cleverbot = cb()
 for event in sc.events():
     data = json.loads(event.json)
     if ((data['type']) == "message"):
-        if ((data['channel']) == "harrison-testing"):
 
-            msg = (data['text'])
-            user = (data['user'])
-            rsp = str(cleverbot.getResponse(user, msg))
-            dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        msg = (data['text'])
+        if "@cleverbot" in msg:
+            if ((data['channel']) == "harrison-testing"):
 
-            finalString = "Time: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\n"
-            with open('./log.txt', 'a') as f:
-                f.write(finalString)
+                msg = msg.replace('@cleverbot', '')
+                user = (data['user'])
+                rsp = str(cleverbot.getResponse(user, msg))
+                dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
+                finalString = "Time: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\n"
+                with open('./log.txt', 'a') as f:
+                    f.write(finalString)
 
-            print(finalString + "\nSent?: " + str(ifSent.sent))
+                ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
 
-        else:
-            print("Message is not on the right channel")
+                print(finalString + "\nSent?: " + str(ifSent.sent))
+
+            else:
+                print("Message is not on the right channel")
 
     time.sleep(1)
