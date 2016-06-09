@@ -21,7 +21,7 @@ for event in sc.events():
 
             finalString = "Time: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\n"
             with open('./log.txt', 'a') as f:
-                f.write(bytes(finalString, 'UTF-8'))
+                f.write(finalString)
 
             print(finalString)
 
