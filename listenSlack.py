@@ -7,9 +7,9 @@ sc = SlackSocket(token, translate=True)
 
 for event in sc.events():
     resp = event.json
-    if (str(resp['type']) == "message"):
-        if (str(resp['channel']) == "harrison-testing"):
-            msg = str(resp['text'])
+    if ((resp['type']) == "message"):
+        if ((resp['channel']) == "harrison-testing"):
+            msg = (resp['text'])
             # response with msg goes here
             print("Message found:  " + msg)
 
