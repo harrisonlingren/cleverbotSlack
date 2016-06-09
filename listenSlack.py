@@ -12,7 +12,7 @@ cleverbot = cb()
 
 for event in sc.events():
     data = json.loads(event.json)
-    if ((data['type']) == "message"):
+    if (data['type']) == "message":
 
         try:
             msg = (data['text'])
@@ -23,7 +23,7 @@ for event in sc.events():
 
         if readSuccess:
             if "<@U1ES5EE1J>" in msg:
-                if ((data['channel']) == "xternsimulator"):
+                if (data['channel']) == "xternsimulator":
 
                     msg = msg.replace('<@U1ES5EE1J>', '')
                     msg.replace('@cleverbot:', '')
@@ -32,13 +32,14 @@ for event in sc.events():
                     rsp = str(cleverbot.getResponse(user, msg))
                     dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-                    finalString = "Time: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\n"
+                    finalString = "\nTime: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '" + rsp + "'\nSent?: " + str(
+                        ifSent.sent)
                     with open('./log.txt', 'a') as f:
                         f.write(finalString)
 
                     ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
 
-                    print(finalString + "\nSent?: " + str(ifSent.sent))
+                    print(finalString)
 
                 else:
                     print("Message is not on the right channel")
