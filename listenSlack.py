@@ -16,6 +16,7 @@ def respondToMessage(m, d):
         m = m.replace('@cleverbot', '')
         user = (d['user'])
         rsp = str(cleverbot.getResponse(user, m))
+        rsp = "@" + user + ": " + rsp
         dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
