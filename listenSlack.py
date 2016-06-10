@@ -9,7 +9,7 @@ from cb import cb
 
 # detect message in channel and get/post response, return final string
 def respondToMessage(m, d):
-    if (d['channel']) == "harrison-testing":
+    if (d['channel']) == "xternsimulator":
 
         m = m.replace('<@U1ES5EE1J>', '')
         m.replace('@cleverbot:', '')
@@ -19,7 +19,7 @@ def respondToMessage(m, d):
         rsp = "@" + user + ": " + rsp
         dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        ifSent = sc.send_msg(rsp, channel_name="harrison-testing")
+        ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
 
         finalString = "\nTime: '" + dateNow + "'\nMessage: '" + m \
                       + "'\nUser: '" + user + "'\nBotResponse: '" + \
@@ -28,7 +28,7 @@ def respondToMessage(m, d):
 
     else:
         print("Message is not on the right channel")
-        return "ERROR: message is not on channel:'harrison-testing'"
+        return "ERROR: message is not on channel:'xternsimulator'"
 
 
 # Main method

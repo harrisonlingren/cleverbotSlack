@@ -9,9 +9,12 @@ class cb:
         try:
             if self.bot[memberid] is None:
                 self.bot[memberid] = Cleverbot()
+                self.bot[memberid].ask("")
         except KeyError:
             self.bot[memberid] = Cleverbot()
+            self.bot[memberid].ask("")
         else:
+            self.bot[memberid].ask("")
             return self.bot[memberid].ask(message)
 
             # def respond(self, message, memberid):
