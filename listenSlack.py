@@ -7,50 +7,67 @@ import slacktools
 from cb import cb
 
 
-def respondToMessage(msg):
-    if (data['channel']) == "xternsimulator":
+# detect message in channel and get/post response, return final string
+def respondToMessage(m, d):
+    if (d['channel']) == "xternsimulator":
 
-                    msg = msg.replace('<@U1ES5EE1J>', '')
-                    msg.replace('@cleverbot:', '')
-                    msg = msg.replace('@cleverbot', '')
-                    user = (data['user'])
-                    rsp = str(cleverbot.getResponse(user, msg))
-                    dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        m = m.replace('<@U1ES5EE1J>', '')
+        m.replace('@cleverbot:', '')
+        m = m.replace('@cleverbot', '')
+        user = (d['user'])
+        rsp = str(cleverbot.getResponse(user, m))
+        dateNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-                    ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
+        ifSent = sc.send_msg(rsp, channel_name="xternsimulator")
 
-                    finalString = "\nTime: '" + dateNow + "'\nMessage: '" + msg + "'\nUser: '" + user + "'\nBotResponse: '$
-                    with open('./log.txt', 'a') as f:
-                        f.write(finalString)
+        finalString = "\nTime: '" + dateNow + "'\nMessage: '" + m \
+                      + "'\nUser: '" + user + "'\nBotResponse: '" + \
+                      rsp + "'\nSent?: " + str(ifSent.sent)
+        return finalString
 
-                    print(finalString)
+    else:
+        print("Message is not on the right channel")
+        return "ERROR: message is not on channel:'xternsimulator'"
 
+
+# Main method
+def go():
+    for event in sc.events():
+        data = json.loads(event.json)
+        if (data['type']) == "message":
+
+            try:
+                msg = (data['text'])
+                readSuccess = True
+            except KeyError:
+                print("  <KeyError> Error while reading message body")
+                readSuccess = False
+
+            if readSuccess:
+                if "<@U1ES5EE1J|cleverbot>" in msg:
+                    output = respondToMessage(msg, data)
+                elif "<@U1ES5EE1J>" in msg:
+                    output = respondToMessage(msg, data)
                 else:
-                    print("Message is not on the right channel")
+                    print("Cleverbot not called in msg: " + msg)
 
+            # Logging
+            with open('./log.txt', 'a') as f:
+                f.write(output)
+            if readSuccess:
+                print("SUCCESS:  Got message and responded!\n")
+            else:
+                print("ERROR:: Could not read message body. Cleverbot might have been mentioned "
+                      "by a status change")
+
+        time.sleep(1)
+
+
+# -------------------------------------------------------------------
+
+# START IT!
 token = slacktools.getSlackToken()
 sc = SlackSocket(token, translate=True)
 cleverbot = cb()
 
-for event in sc.events():
-    data = json.loads(event.json)
-    if (data['type']) == "message":
-
-        try:
-            msg = (data['text'])
-            readSuccess = True
-        except KeyError:
-            print("Error: Could not read message body")
-            readSuccess = False
-
-        if readSuccess:
-            if "<@U1ES5EE1J|cleverbot>" in msg:
-                respondToMessage(msg)
-            elif "<@U1ES5EE1J>" in msg:
-                respondToMessage(msg)
-                if (data['channel']) == "xternsimulator":
-
-            else:
-                print("Cleverbot not called in msg: " + msg)
-
-    time.sleep(1)
+go()
