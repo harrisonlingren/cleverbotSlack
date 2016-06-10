@@ -46,19 +46,19 @@ def go():
             if readSuccess:
                 if "<@U1ES5EE1J|cleverbot>" in msg:
                     output = respondToMessage(msg, data)
+                    output += "\nSUCCESS:  Got message and responded!\n"
                 elif "<@U1ES5EE1J>" in msg:
                     output = respondToMessage(msg, data)
+                    output += "\nSUCCESS:  Got message and responded!\n"
                 else:
-                    print("Cleverbot not called in msg: " + msg)
-
+                    output = "\nERROR: Cleverbot not called in msg: " + msg
+                    print(output)
+            else:
+                output = "\nERROR:: Could not read message body. Cleverbot might " \
+                         "have been mentioned by a status change\n"
             # Logging
             with open('./log.txt', 'a') as f:
                 f.write(output)
-            if readSuccess:
-                print("SUCCESS:  Got message and responded!\n")
-            else:
-                print("ERROR:: Could not read message body. Cleverbot might have been mentioned "
-                      "by a status change")
 
         time.sleep(1)
 
